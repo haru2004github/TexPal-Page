@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texpal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@200;300;400&family=Open+Sans:wght@600&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./dist/output.css">
+    <style>
+        * {
+            font-family: 'Quicksand', sans-serif;
+        }
+        .loading{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+           
+            height:100vh;
+            position:fixed;
+            top:0;
+            left: 0;
+            z-index:100;
+
+        }
+        .loader {
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.1s infinite ease;
+  transform: translateZ(0);
+}
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #ffffff, 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.5), -1.8em -1.8em 0 0em rgba(255,255,255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.7), 1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.5), 1.8em -1.8em 0 0em rgba(255,255,255, 0.7), 2.5em 0em 0 0em #ffffff, 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.5), 2.5em 0em 0 0em rgba(255,255,255, 0.7), 1.75em 1.75em 0 0em #ffffff, 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.5), 1.75em 1.75em 0 0em rgba(255,255,255, 0.7), 0em 2.5em 0 0em #ffffff, -1.8em 1.8em 0 0em rgba(255,255,255, 0.2), -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.5), 0em 2.5em 0 0em rgba(255,255,255, 0.7), -1.8em 1.8em 0 0em #ffffff, -2.6em 0em 0 0em rgba(255,255,255, 0.2), -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.5), -1.8em 1.8em 0 0em rgba(255,255,255, 0.7), -2.6em 0em 0 0em #ffffff, -1.8em -1.8em 0 0em rgba(255,255,255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.5), -2.6em 0em 0 0em rgba(255,255,255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+  }
+}
+        
+    </style>
+</head>
+
+<body class="">
+     <!-- loading -->
+     <div class="loading bg-blue-400 dark:bg-slate-900">
+        <span class="loader"></span>
+     </div>
+
+    <!-- navbar -->
+    <header class="py-5 lg:py-7 dark:bg-slate-800 animate__animated navControl" id="navbar">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <nav class="flex justify-between">
+                <div class="flex justify-between items-center md:gap-x-10 lg:gap-x-12">
+                    <svg aria-hidden="true" viewBox="0 0 109 40" class="h-10 w-auto dark:text-slate-200">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 20c0 11.046 8.954 20 20 20s20-8.954 20-20S31.046 0 20 0 0 8.954 0 20Zm20 16c-7.264 0-13.321-5.163-14.704-12.02C4.97 22.358 6.343 21 8 21h24c1.657 0 3.031 1.357 2.704 2.98C33.32 30.838 27.264 36 20 36Z"
+                            fill="#2563EB"></path>
+                        <path d="M55.528 26.57V15.842H52V13.97h9.108v1.872h-3.636V26.57h-1.944Z" fill="#0F172A"></path>
+                        <path
+                            d="M83.084 26.57v-12.6h5.346c.744 0 1.416.18 2.016.54a3.773 3.773 0 0 1 1.44 1.44c.36.612.54 1.302.54 2.07 0 .78-.18 1.482-.54 2.106a4 4 0 0 1-1.44 1.494c-.6.36-1.272.54-2.016.54h-2.646v4.41h-2.7Zm2.664-6.84h2.376c.288 0 .546-.072.774-.216.228-.156.408-.36.54-.612a1.71 1.71 0 0 0 .216-.864c0-.324-.072-.606-.216-.846a1.394 1.394 0 0 0-.54-.576 1.419 1.419 0 0 0-.774-.216h-2.376v3.33ZM106.227 26.57V13.25h2.556v13.32h-2.556Z"
+                            fill="#2563EB"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M95.906 26.102c.636.432 1.35.648 2.142.648.444 0 .864-.066 1.26-.198a4.25 4.25 0 0 0 1.062-.558 3.78 3.78 0 0 0 .702-.668v1.244h2.574v-9.522h-2.538v1.248a3.562 3.562 0 0 0-.648-.672 3.13 3.13 0 0 0-1.026-.558 3.615 3.615 0 0 0-1.278-.216c-.828 0-1.566.216-2.214.648-.648.42-1.164 1.002-1.548 1.746-.372.732-.558 1.578-.558 2.538 0 .96.186 1.812.558 2.556.372.744.876 1.332 1.512 1.764Zm4.104-1.908c-.36.228-.78.342-1.26.342-.468 0-.882-.114-1.242-.342a2.387 2.387 0 0 1-.828-.954c-.204-.42-.306-.906-.306-1.458 0-.54.102-1.014.306-1.422.204-.408.48-.726.828-.954.36-.24.774-.36 1.242-.36.48 0 .9.12 1.26.36.36.228.636.546.828.954.204.408.306.882.306 1.422 0 .552-.102 1.038-.306 1.458a2.218 2.218 0 0 1-.828.954Z"
+                            fill="#2563EB"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="m76.322 23.197 2.595 3.373h2.268l-3.662-4.787 3.338-4.663h-2.196l-2.162 3.334-2.554-3.334h-2.34l3.652 4.71-3.634 4.74h2.196l2.5-3.373ZM62.738 26.102a3.78 3.78 0 0 0 2.142.648c.456 0 .888-.072 1.296-.216.42-.144.798-.336 1.134-.576a3.418 3.418 0 0 0 .864-.835v1.447h1.872v-9.45h-1.872v1.45a3.118 3.118 0 0 0-.72-.82 3.2 3.2 0 0 0-1.062-.612 4.033 4.033 0 0 0-1.35-.216c-.828 0-1.578.21-2.25.63-.66.42-1.188 1.002-1.584 1.746-.384.732-.576 1.572-.576 2.52 0 .936.192 1.776.576 2.52.384.744.894 1.332 1.53 1.764Zm4.122-1.476c-.432.276-.93.414-1.494.414a2.682 2.682 0 0 1-1.476-.414 2.987 2.987 0 0 1-1.008-1.134c-.24-.492-.36-1.05-.36-1.674 0-.612.12-1.158.36-1.638.252-.48.588-.858 1.008-1.134a2.682 2.682 0 0 1 1.476-.414c.564 0 1.062.138 1.494.414.432.276.768.654 1.008 1.134.252.48.378 1.026.378 1.638 0 .624-.126 1.182-.378 1.674-.24.48-.576.858-1.008 1.134Z"
+                            fill="#0F172A"></path>
+                    </svg>
+                    <div class="h-screen z-40  fixed md:bg-transparent duration-500 md:static md:h-auto bg-slate-50 md:block w-full top-0 -left-full flex justify-center items-center " id="mobile-slide">
+                        <div id="cancelBtn" class="absolute top-5 right-5 md:hidden border rounded-full w-8 h-8 flex justify-center items-center">
+                            <i class="fa-solid fa-xmark  "></i>
+                        </div>
+                        <ul class=" md:flex items-center md:space-x-2 lg:space-x-12 space-y-8 md:space-y-0">
+                            <li class="hover:bg-slate-100 text-blue-500 md:text-slate-900 dark:hover:bg-slate-800 dark:text-slate-100 px-2 py-1 duration-75 rounded-lg">
+                                <a href="#features">
+                                    Features
+                                </a>
+                            </li>
+                            <li class="hover:bg-slate-100 text-blue-500 md:text-slate-900 dark:hover:bg-slate-800 dark:text-slate-100 px-2 py-1 duration-75 rounded-lg">
+                                <a href="#testimonial">
+                                    Testimonial
+                                </a>
+                            </li>
+                            <li class="hover:bg-slate-100 text-blue-500 md:text-slate-900 dark:hover:bg-slate-800 dark:text-slate-100 px-2 py-1 duration-75 rounded-lg">
+                                <a href="#pricing">
+                                    Pricing
+                                </a>
+                            </li>
+                            <div class="md:hidden border border-b-2"></div>
+                            <li class="md:hidden ">
+                                <div class="">
+                                    <button class="px-2 py-1 text-blue-500 md:text-slate-900  hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg dark:text-slate-100">Sign in</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md:hidden">
+                                    <button class="px-4 py-2   dark:text-slate-200 bg-blue-600 rounded-full">Get started <span class="hidden lg:inline">today</span></button>
+                                </div> 
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:flex justify-between items-center ">
+                    <div class="flex gap-1 md:gap-x-2 items-center">
+                        <div class="hidden md:block">
+                            <button class="px-2 py-1  hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg dark:text-slate-100">Sign in</button>
+
+                        </div>                        
+                        <div class="hidden md:block">
+                            <button class="md:px-4 md:py-2 px-2 py-1  dark:text-slate-200 bg-blue-600 rounded-full">Get started <span class="hidden lg:inline">today</span></button>
+                        </div>                        
+                        <button id="dark-switch" onclick="toggleTheme()" class="shadow scale-75 w-[72px] flex items-center transition duration-200 rounded-full m-0 bg-slate-200 p-1">
+                            <div id="dark-switch-icon" class="bg-slate-50 w-8 h-8 rounded-full transform transition duration-200 flex justify-center items-center">
+                                <i class="fa-regular fa-sun"></i>
+                            </div>
+                            <h6 id="dark-text" class="text-slate-200 dark:text-slate-900 translate-x-1">FF</h6>
+                        </button>
+                        <div class="mobile-menu md:hidden border rounded-full w-8 h-8 flex justify-center items-center bg-blue-500">
+                            <i class="fas fa-bars text-slate-100"></i>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero-section -->
+    <main class="dark:bg-slate-900 pb-28" id="home">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-36 pb-36 ">
+            <h1 class="md:text-7xl text-5xl md:max-w-4xl  lg:max-w-4xl font-bold mx-auto text-center dark:text-slate-100 headline">
+                <span class=" block lg:inline text-center">Accounting</span>
+                <span class="relative md:block lg:inline max-w-md mx-auto">
+                    <svg  aria-hidden="true" viewBox="0 0 418 42"
+                        class="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70" preserveAspectRatio="none">
+                        <path
+                            d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z">
+                        </path>
+                    </svg>
+                    <span class="text-blue-500 z-10">made simple</span>
+                </span>
+                <span class="">for small business.</span>
+            </h1>
+            <h3 class="headline max-w-2xl text-xl mx-auto mt-10 text-center text-slate-800 tracking-tight dark:text-slate-200">
+                Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you
+                don’t get audited.
+            </h3>
+            <div class="flex space-x-5 justify-center mt-10">
+                <button class="headline text-slate-200 bg-slate-900 dark:bg-slate-200 dark:text-slate-900 px-3 py-2 rounded-full">Get 6 months free</button>
+                <button class="headline px-3 py-2 border rounded-full dark:text-slate-200">
+                    <i class="fa-solid fa-play text-blue-500 mr-2"></i>
+                    Watch video
+                </button>
+            </div>
+        </div>
+        <div class="">
+            <h1 class="headline text-slate-700 text-center dark:text-slate-200">Trusted by these six companies so far</h1>
+            <div class="flex justify-center mt-12">
+                <ul
+                    class="grid grid-cols-2 gap-x-5 gap-y-6 items-center md:gap-x-5 lg:gap-x-12  md:grid-cols-3 lg:flex">
+                    <li class="headline">
+                        <img src="../dist/img/transistor.7274e6c3.svg" alt="">
+                    </li>
+                    <li class="headline">
+                        <img src="../dist/img/tuple.74eb0ae0.svg" alt="">
+                    </li>
+                    <li class="headline">
+                        <img src="../dist/img/statickit.d7937794.svg" alt="">
+                    </li>
+                    <li class="headline">
+                        <img src="../dist/img/mirage.18d2ec4e.svg" alt="">
+                    </li>
+                    <li class="headline">
+                        <img src="../dist/img/laravel.7deed17e.svg" alt="">
+                    </li>
+                    <li class="headline">
+                        <img src="../dist/img/statamic.6da5ebfb.svg" alt="">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- feature-section -->
+    <section id="features" class="relative  pt-28 pb-28 lg:pb-64 bg-blue-600 overflow-hidden px-5 md:px-7 active-link">
+        <img class="absolute " src="../dist/img/background-features.5f7a9ac9.jpg" alt="">
+        <div class="max-w-7xl mx-auto relative ">
+            <h1 class="text-slate-100 text-4xl lg:text-5xl text-center max-w-2xl mx-auto  headline">Everything you need to run your books.</h1>
+            <h3 class="text-slate-200 text-center text-lg md:text-xl mt-5 max-w-2xl mx-auto headline">Well everything you need if you aren’t that picky about
+                minor details like tax compliance.</h3>
+
+            <div
+                class="block md:grid-cols-1 lg:grid lg:grid-cols-2 mt-24 lg:mt-64 max-h-[90vh] justify-center items-center  lg:bg-transparent">
+                <div class="flex lg:flex-col items-end justify-center gap-3 lg-gap-0">
+                    <div id="btnOne"
+                        class="headline duration-150 cursor-pointer hover:bg-white/5 hover:ring-2 p-2 md:p-3 lg:p-5 bg-white/10 lg:rounded-l-2xl lg:rounded-r-none rounded-full lg:pr-10">
+                        <h1 class="text-slate-200 text-md md:text-xl ">Payroll</h1>
+                        <h2 class="text-slate-200 mt-5 hidden lg:block max-w-lg">Keep track of everyone salaries and
+                            where or not they haven't been paid.
+                            Direct deposit not supported.
+                        </h2>
+                    </div>
+                    <div id="btnTwo"
+                        class="headline duration-150 cursor-pointer hover:bg-white/5 hover:ring-2 p-2 md:p-3 lg:p-5 lg:rounded-l-2xl lg:rounded-r-none rounded-full lg:pr-10">
+                        <h1 class="text-slate-200 text-md md:text-xl">Cliam expenses</h1>
+                        <h2 class="text-slate-200 mt-5 hidden lg:block max-w-lg">All of your receipt organized into
+                            one place as long as you don'
+                            mind hiding data by hard
+                        </h2>
+                    </div>
+                    <div id="btnThree"
+                        class="headline duration-150 cursor-pointer hover:bg-white/5 hover:ring-2 p-2 md:p-3 lg:p-5 lg:rounded-l-2xl lg:rounded-r-none rounded-full lg:pr-10">
+                        <h1 class="text-slate-200 text-md md:text-xl">VAT handling</h1>
+                        <h2 class="text-slate-200 mt-5 hidden lg:block max-w-lg">We only sell our software to
+                            companies who don't deal with VAT a
+                            all, technically we do all the VAT stuff we need.
+                        </h2>
+                    </div>
+                    <div id="btnFour"
+                        class="headline duration-150 cursor-pointer hover:bg-white/5 hover:ring-2 p-2 md:p-3 lg:p-5 lg:rounded-l-2xl lg:rounded-r-none rounded-full lg:pr-10">
+                        <h1 class="text-slate-200 text-md md:text-xl">Reporting</h1>
+                        <h2 class="text-slate-200 mt-5 hidden lg:block max-w-lg">Easily your data inti a Excel
+                            spreadsheet where you can do
+                            whatever the hell you want width it.
+                        </h2>
+                    </div>
+                </div>
+                <!-- Input -->
+                <div class="lg:hidden block headline" id="inputText"></div>
+
+                <div id="imgContainer"
+                    class="lg:absolute headline md:translate-x-0 lg:translate-x-1/2 md:flex md:justify-center lg:block w-full mt-10 lg:mt-0">
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- third-page -->
+    <section class="md:py-28 py-20 px-5 md:px-7 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="headline text-slate-900 text-4xl md:text-5xl text-center font-bold dark:text-slate-100">Simplify everyday business tasks.</h1>
+            <h3 class="headline text-slate-700 text-lg mx-auto text-center max-w-2xl mt-6 dark:text-slate-200">
+                Because you’d probably be a little confused if we suggested you complicate your everyday business tasks
+                instead.
+            </h3>
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 mt-20 mb-16 gap-y-5 lg:gap-y-0">
+            <!-- cardOne -->
+            <div id="reporting" class="p-5 cursor-pointer header">
+                <div class=" ">
+                    <i class="fa-solid fa-chart-line fa-2x p-2 bg-slate-500 text-slate-100 rounded-lg "
+                        id="reportIcon"></i>
+                </div>
+                <h1 id="reportText" class=" text-slate-700 font-bold mt-6 dark:text-slate-100">Reporting</h1>
+                <h1 class="  text-xl md:text-2xl text-slate-700 mt-6 dark:text-slate-200">Stay on top of things with always up-to-date reporting features
+                </h1>
+                <h4 class=" text-slate-500 mt-6 dark:text-slate-300">We are talked about reporting in the section above but we needed three
+                    time</h4>
+
+
+                <div class="lg:hidden  block p-3 bg-slate-200 rounded-xl mt-10">
+                     <img class="rounded-lg" src="../dist/img/TaxPal - Accounting made simple for small businesses_files/reporting.png" alt="">
+                </div>
+            </div>
+            <!-- cardTwo -->
+            <div id="inventory" class="p-5 cursor-pointer headline">
+                <div class=" ">
+                    <i id="inventoryIcon"
+                        class="fa-solid fa-folder-plus fa-2x p-2 bg-slate-500 text-slate-100 rounded-lg"></i>
+                </div>
+                <h1 id="inventoryText" class=" text-slate-700 font-bold mt-6 dark:text-slate-100">Inventory</h1>
+                <h1 class=" text-xl md:text-2xl text-slate-700 mt-6 dark:text-slate-200">Never track of what's in track with accurate inventory tracking
+                </h1>
+                <h4 class=" text-slate-500 mt-6 dark:text-slate-300">We don't offer this as part of our software but that statement is
+                    inargubly true.
+                    Accurate inventory tracking would help your sure</h4>
+
+                <div class="lg:hidden  block p-3 bg-slate-200 rounded-xl mt-10">
+                    <img class="rounded-lg" src="../dist/img/TaxPal - Accounting made simple for small businesses_files/inventory.png" alt="">
+                </div>
+            </div>
+
+            <!-- cardThree -->
+            <div id="contacts" class="p-5 cursor-pointer headline">
+                <div class=" ">
+                    <i id="contactIcon"
+                        class="fa-solid fa-contact-card fa-2x p-2 bg-slate-500 text-slate-100 rounded-lg"></i>
+                </div>
+                <h1 id="contactText" class=" text-slate-700 font-bold mt-6 dark:text-slate-100">Contacts</h1>
+                <h1 class=" text-xl md:text-2xl text-slate-700 mt-6 dark:text-slate-200">Organized all of your contacts,service providers, and invoices
+                    in one place. </h1>
+                <h4 class=" text-slate-500 mt-6 dark:text-slate-300">This also isn't actually a feature. This just some
+                    friendly advices.We definatly recommended that
+                    you do this , you'll feel really organized and professional.
+                </h4>
+
+                <div class="lg:hidden  block p-3 bg-slate-200 rounded-xl mt-10">
+                    <img class="rounded-lg" src="../dist/img/TaxPal - Accounting made simple for small businesses_files/contacts.png" alt="">
+                  </div>
+            </div>
+        </div>
+        <div id="thirdPageImgContainer" class="max-w-7xl hidden lg:block mx-auto p-16 bg-slate-200 dark:bg-slate-800 rounded-3xl">
+
+        </div>
+    </section>
+
+    <!-- get-start-section -->
+    <section class="bg-blue-600 overflow-hidden  relative h-96 ">
+        <div class="absolute flex justify-center items-center w-full">
+            <img class="lg:block hidden" src="../dist/img/photo_2022-11-22_21-43-15.jpg" alt="">
+            <img class="block lg:hidden" src="../dist/img/background-features.5f7a9ac9.jpg" alt="">
+
+        </div>
+        <div class=" absolute flex justify-center items-center w-full h-full">
+            <div class="max-w-xl mx-auto">
+                <h1 class=" headline text-slate-100 text-5xl text-center">Get started today</h1>
+                <h3 class=" headline text-slate-200 text-xl text-center mt-10">
+                    It’s time to take control of your books. Buy our software so you can feel like you’re doing
+                    something productive.
+                </h3>
+                <div class=" headline flex justify-center items-center">
+                    <button class="text-slate-900  bg-slate-100 px-3 py-2 rounded-full mt-14 font-bold">Get 6 Months
+                        Free</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- testimonial-section -->
+    <section class="py-28 bg-slate-50 dark:bg-slate-900 px-5 md:px-7 active-link" id="testimonial">
+        <div class="md:max-w-2xl lg:max-w-3xl mx-auto">
+            <h1 class="text-4xl font-bold lg:text-5xl text-slate-900 dark:text-slate-100 text-center">Loved by businesses worldwide.</h1>
+            <h3 class="text-slate-600 dark:text-slate-200 mt-6 text-lg md:text-xl text-center">Our software is so simple that people can’t help but
+                fall in love with it. Simplicity is easy when you just skip tons of mission-critical features.</h3>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 mt-20  md:max-w-2xl lg:max-w-7xl mx-auto gap-8">
+            <!-- rowOne -->
+            <div class="space-y-8">
+                <div class="relative p-7 shadow-xl rounded-xl dark:bg-slate-800 headline">
+                    <img class="absolute top-3 left-5 opacity-[0.05]" src="../dist/img/icons8-quote-left-120(-xxxhdpi).png"
+                        alt="">
+                    <h1 class=" text-lg md:text-xl text-slate-800 dark:text-slate-100 ">
+                        TaxPal is so easy to use I can’t help but wonder if it’s really doing the things the government
+                        expects me to do.
+                    </h1>
+                    <div class="border border-b-2 my-6"></div>
+                    <div class="flex justify-between items-center">
+                        <div class="">
+                            <h1 class="text-slate-800 dark:text-slate-100">Sheryl Berge</h1>
+                            <h3 class="text-slate-700 dark:text-slate-300">CEO at Lynch LLC</h3>
+                        </div>
+                        <div class="">
+                            <img class="w-16 rounded-full"
+                                src="../dist/img/TaxPal - Accounting made simple for small businesses_files/avatar-1.png"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="relative p-7 shadow-xl rounded-xl dark:bg-slate-800 headline">
+                    <img class="absolute top-3 left-5 opacity-[0.05]" src="../dist/img/icons8-quote-left-120(-xxxhdpi).png"
+                        alt="">
+                    <h1 class="text-lg md:text-xl text-slate-800 dark:text-slate-100 ">
+                        This is the fourth email I’ve sent to your support team. I am literally being held in jail for
+                        tax fraud. Please answer your damn emails, this is important.
+                        <div class="border border-b-2 my-6"></div>
+                        <div class="flex justify-between items-center">
+                            <div class="">
+                                <h1 class="text-slate-800 dark:text-slate-100">Amy Hahn</h1>
+                                <h3 class="text-slate-700 dark:text-slate-300">Director at Velocity Industries
+                                </h3>
+                            </div>
+                            <div class="">
+                                <img class="w-16 rounded-full"
+                                    src="../dist/img/TaxPal - Accounting made simple for small businesses_files/avatar-4.png"
+                                    alt="">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!-- rowTwo -->
+            <div class="space-y-8">
+                <div class="relative p-7 shadow-xl rounded-xl dark:bg-slate-800 headline">
+                    <img class="absolute top-3 left-5 opacity-[0.05]" src="../dist/img/icons8-quote-left-120(-xxxhdpi).png"
+                        alt="">
+                    <h1 class="text-lg md:text-xl text-slate-800 dark:text-slate-100 ">
+                        The best part about TaxPal is every time I pay my employees, my bank balance doesn’t go down
+                        like it used to. Looking forward to spending this extra cash when I figure out why my card is
+                        being declined. </h1>
+                    <div class="border border-b-2 my-6"></div>
+                    <div class="flex justify-between items-center">
+                        <div class="">
+                            <h1 class="text-slate-800 dark:text-slate-100">Leland Kiehn</h1>
+                            <h3 class="text-slate-700 dark:text-slate-300">Founder of Kiehn and Sons</h3>
+                        </div>
+                        <div class="">
+                            <img class="w-16 rounded-full"
+                                src="../dist/img/TaxPal - Accounting made simple for small businesses_files/avatar-3.png"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="relative p-7 shadow-xl rounded-xl dark:bg-slate-800 headline">
+                    <img class="absolute top-3 left-5 opacity-[0.05]" src="../dist/img/icons8-quote-left-120(-xxxhdpi).png"
+                        alt="">
+                    <h1 class="text-lg md:text-xl text-slate-800 dark:text-slate-100 ">
+                        I used to have to remit tax to the EU and with TaxPal I somehow don’t have to do that anymore.
+                        Nervous to travel there now though.
+                        <div class="border border-b-2 my-6"></div>
+                        <div class="flex justify-between items-center">
+                            <div class="">
+                                <h1 class="text-slate-800 dark:text-slate-100">Peter Renolds</h1>
+                                <h3 class="text-slate-700 dark:text-slate-300">Founder of West Inc</h3>
+                            </div>
+                            <div class="">
+                                <img class="w-16 rounded-full"
+                                    src="../dist/img/TaxPal - Accounting made simple for small businesses_files/avatar-5.png"
+                                    alt="">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!-- rowThree -->
+            <div class="space-y-8">
+                <div class="relative p-7 shadow-xl rounded-xl dark:bg-slate-800 headline">
+                    <img class="absolute top-3 left-5 opacity-[0.05]" src="../dist/img/icons8-quote-left-120(-xxxhdpi).png"
+                        alt="">
+                    <h1 class="text-lg md:text-xl text-slate-800 dark:text-slate-100 ">
+                        This is the fourth email I’ve sent to your support team. I am literally being held in jail for
+                        tax fraud. Please answer your damn emails, this is important.
+                    </h1>
+                    <div class="border border-b-2 my-6"></div>
+                    <div class="flex justify-between items-center">
+                        <div class="">
+                            <h1 class="text-slate-800 dark:text-slate-100">Amy Hahn</h1>
+                            <h3 class="text-slate-700 dark:text-slate-300">Director at Velocity Industries
+                            </h3>
+                        </div>
+                        <div class="">
+                            <img class="w-16 rounded-full"
+                                src="../dist/img/TaxPal - Accounting made simple for small businesses_files/avatar-4.png"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="relative p-7 shadow-xl rounded-xl dark:bg-slate-800 headline">
+                    <img class="absolute top-3 left-5 opacity-[0.05]" src="../dist/img/icons8-quote-left-120(-xxxhdpi).png"
+                        alt="">
+                    <h1 class="text-lg md:text-xl text-slate-800 dark:text-slate-100 ">
+                        There are so many things I had to do with my old software that I just don’t do at all with
+                        TaxPal. Suspicious but I can’t say I don’t love it.
+                        <div class="border border-b-2 my-6"></div>
+                        <div class="flex justify-between items-center">
+                            <div class="">
+                                <h1 class="text-slate-800 dark:text-slate-100">Erin Powlowski</h1>
+                                <h3 class="text-slate-700 dark:text-slate-300">
+                                    COO at Armstrong Inc
+
+                                </h3>
+                            </div>
+                            <div class="">
+                                <img class="w-16 rounded-full"
+                                    src="../dist/img/TaxPal - Accounting made simple for small businesses_files/avatar-2.png"
+                                    alt="">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- pricing-section -->
+    <section class="py-28 bg-slate-900 lg:min-h-0 lg:max-h-screen md:min-h-screen px-5 md:px-7 active-link" id="pricing">
+        <div class=" max-w-3xl mx-auto">
+            <h1 class="headline text-4xl font-bold md:text-5xl text-slate-100  text-center max-w-2xl lg:max-w-3xl mx-auto">
+                <span class="relative ">
+                    <span class="z-10">Simple pricing,</span>
+                    <span class="z-0">
+                        <svg aria-hidden="true" viewBox="0 0 281 40"
+                            class="absolute top-1/2 left-0 h-[1em] w-full fill-blue-400" preserveAspectRatio="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M240.172 22.994c-8.007 1.246-15.477 2.23-31.26 4.114-18.506 2.21-26.323 2.977-34.487 3.386-2.971.149-3.727.324-6.566 1.523-15.124 6.388-43.775 9.404-69.425 7.31-26.207-2.14-50.986-7.103-78-15.624C10.912 20.7.988 16.143.734 14.657c-.066-.381.043-.344 1.324.456 10.423 6.506 49.649 16.322 77.8 19.468 23.708 2.65 38.249 2.95 55.821 1.156 9.407-.962 24.451-3.773 25.101-4.692.074-.104.053-.155-.058-.135-1.062.195-13.863-.271-18.848-.687-16.681-1.389-28.722-4.345-38.142-9.364-15.294-8.15-7.298-19.232 14.802-20.514 16.095-.934 32.793 1.517 47.423 6.96 13.524 5.033 17.942 12.326 11.463 18.922l-.859.874.697-.006c2.681-.026 15.304-1.302 29.208-2.953 25.845-3.07 35.659-4.519 54.027-7.978 9.863-1.858 11.021-2.048 13.055-2.145a61.901 61.901 0 0 0 4.506-.417c1.891-.259 2.151-.267 1.543-.047-.402.145-2.33.913-4.285 1.707-4.635 1.882-5.202 2.07-8.736 2.903-3.414.805-19.773 3.797-26.404 4.829Zm40.321-9.93c.1-.066.231-.085.29-.041.059.043-.024.096-.183.119-.177.024-.219-.007-.107-.079ZM172.299 26.22c9.364-6.058 5.161-12.039-12.304-17.51-11.656-3.653-23.145-5.47-35.243-5.576-22.552-.198-33.577 7.462-21.321 14.814 12.012 7.205 32.994 10.557 61.531 9.831 4.563-.116 5.372-.288 7.337-1.559Z">
+                            </path>
+                        </svg>
+                    </span>
+                </span>
+                <span>for everyone.</span>
+            </h1>
+            <h3 class="headline text-slate-400 text-xl mt-8 text-center">doesn’t matter what size your business is, our software won’t work
+                well for you.</h3>
+        </div>
+        <div class="grid  grid-cols-1 lg:grid-cols-3 md:px-5 lg:px-0 max-w-2xl lg:max-w-6xl mx-auto gap-y-6 lg:gap-3 mt-20">
+            <div class="">
+                <div class="p-8 rounded-3xl bg-transparent headline">
+                    <h1 class="text-slate-100 text-4xl md:text-5xl">$9</h1>
+                    <h1 class="text-slate-100 text-xl mt-5">Starter</h1>
+                    <h1 class="text-slate-100 text-lg mt-3">Good for anyone who is self-employed and just getting
+                        started.</h1>
+                    <div class="mt-8">
+                        <button class="text-slate-100 hover:bg-slate-800 border w-full py-2 rounded-full">Get started</button>
+                    </div>
+                    <div class="flex gap-4 mt-8 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Send 25 quotes and invoices</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Connect up to 5 bank accounts</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Track up to 50 expenses per month</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Automated payroll support</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Export up to 12 reports</span>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="p-8 rounded-3xl bg-blue-600 headline">
+                    <h1 class="text-slate-100 text-4xl md:text-5xl">$15</h1>
+                    <h1 class="text-slate-100 text-xl mt-5">Small business</h1>
+                    <h1 class="text-slate-100 text-lg mt-3">Perfect for small / medium sized businesses.</h1>
+                    <div class="mt-8">
+                        <button class="text-slate-800 bg-slate-100 hover:bg-slate-200 w-full py-2 rounded-full">Get started</button>
+                    </div>
+                    <div class="flex gap-4 mt-8 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Send 25 quotes and invoices</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Connect up to 5 bank accounts</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Track up to 50 expenses per month</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Automated payroll support</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Export up to 12 reports</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Bulk reconcile transactions</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Track in multiple currencies</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="p-8 rounded-3xl bg-transparent headline">
+                    <h1 class="text-slate-100 text-4xl md:text-5xl">$39</h1>
+                    <h1 class="text-slate-100 text-xl mt-5">Enterprise</h1>
+                    <h1 class="text-slate-100 text-lg mt-3">For even the biggest enterprise companies.</h1>
+                    <div class="mt-8">
+                        <button class="text-slate-100 hover:bg-slate-800 border w-full py-2 rounded-full">Get started</button>
+                    </div>
+                    <div class="flex gap-4 mt-8 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Send unlimited quotes and invoices</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Connect up to 15 bank accounts</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Track up to 200 expenses per month</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Automated payroll support</span>
+                    </div>
+                    <div class="flex gap-4 mt-3 items-center">
+                        <img class="w-5 h-5" src="../dist/img/icons8-checkmark-24 (1).png" alt="">
+                        <span class="text-slate-100">Export up to 25 reports,including TPS</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Question-section -->
+    <section id="footer" class=" relative bg-[#f8fafc] w-full h-[1000px] mx-auto  max-w-[1960px] ">
+        <div class="absolute z-20 mx-auto w-full py-20 px-5">
+            <div class="flex flex-col max-w-2xl lg:max-w-7xl mx-auto ">
+                <div class="max-w-2xl">
+                    <h1 class="headline text-4xl text-slate-900 font-bold">Frequently asked questions</h1>
+                    <h3 class="headline text-xl text-slate-600 mt-10 ">If you can’t find what you’re looking for, email our
+                        support team and if you’re lucky someone will get back to you.</h3>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 mt-20 gap-x-8">
+                    <div class="flex flex-col space-y-10">
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">Does TaxPal handle VAT?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">Well no, but if you move your company offshore you
+                                can probably ignore it.</h3>
+                        </div>
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">Can I pay for my subscription via purchase order?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">Absolutely, we are happy to take your money in all
+                                forms.</h3>
+                        </div>
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">How do I apply for a job at TaxPal?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">We only hire our customers, so subscribe for a
+                                minimum of 6 months and then let’s talk.</h3>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col space-y-10 mt-10 md:mt-0">
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">What was that testimonial about tax fraud all about?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">TaxPal is just a software application, ultimately
+                                your books are your responsibility.</h3>
+                        </div>
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">TaxPal sounds horrible but why do I still feel compelled
+                                to purchase?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">This is the power of excellent visual design. You
+                                just can’t resist it, no matter how poorly it actually functions.</h3>
+                        </div>
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">I found other companies called TaxPal, are you sure you
+                                can use this name?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">Honestly not sure at all. We haven’t actually
+                                incorporated or anything, we just thought it sounded cool and made this website.</h3>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col space-y-10 mt-10 lg:mt-0">
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">Does TaxPal handle VAT?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">Well no, but if you move your company offshore you
+                                can probably ignore it.</h3>
+                        </div>
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">Can we expect more inventory features?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">In life it’s really better to never expect anything
+                                at all.</h3>
+                        </div>
+                        <div class="headline">
+                            <h1 class="text-xl text-slate-900 font-bold">I lost my password, how do I get into my account?</h1>
+                            <h3 class=" text-md md:text-lg text-slate-700 mt-3">Send us an email and we will send you a copy of our
+                                latest password spreadsheet so you can find your information.</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mx-auto mt-10 ">
+                    <div class="flex justify-center items-center ">
+                        <svg aria-hidden="true" viewBox="0 0 109 40" class="h-10 w-auto">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0 20c0 11.046 8.954 20 20 20s20-8.954 20-20S31.046 0 20 0 0 8.954 0 20Zm20 16c-7.264 0-13.321-5.163-14.704-12.02C4.97 22.358 6.343 21 8 21h24c1.657 0 3.031 1.357 2.704 2.98C33.32 30.838 27.264 36 20 36Z"
+                                fill="#2563EB"></path>
+                            <path d="M55.528 26.57V15.842H52V13.97h9.108v1.872h-3.636V26.57h-1.944Z" fill="#0F172A">
+                            </path>
+                            <path
+                                d="M83.084 26.57v-12.6h5.346c.744 0 1.416.18 2.016.54a3.773 3.773 0 0 1 1.44 1.44c.36.612.54 1.302.54 2.07 0 .78-.18 1.482-.54 2.106a4 4 0 0 1-1.44 1.494c-.6.36-1.272.54-2.016.54h-2.646v4.41h-2.7Zm2.664-6.84h2.376c.288 0 .546-.072.774-.216.228-.156.408-.36.54-.612a1.71 1.71 0 0 0 .216-.864c0-.324-.072-.606-.216-.846a1.394 1.394 0 0 0-.54-.576 1.419 1.419 0 0 0-.774-.216h-2.376v3.33ZM106.227 26.57V13.25h2.556v13.32h-2.556Z"
+                                fill="#2563EB"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M95.906 26.102c.636.432 1.35.648 2.142.648.444 0 .864-.066 1.26-.198a4.25 4.25 0 0 0 1.062-.558 3.78 3.78 0 0 0 .702-.668v1.244h2.574v-9.522h-2.538v1.248a3.562 3.562 0 0 0-.648-.672 3.13 3.13 0 0 0-1.026-.558 3.615 3.615 0 0 0-1.278-.216c-.828 0-1.566.216-2.214.648-.648.42-1.164 1.002-1.548 1.746-.372.732-.558 1.578-.558 2.538 0 .96.186 1.812.558 2.556.372.744.876 1.332 1.512 1.764Zm4.104-1.908c-.36.228-.78.342-1.26.342-.468 0-.882-.114-1.242-.342a2.387 2.387 0 0 1-.828-.954c-.204-.42-.306-.906-.306-1.458 0-.54.102-1.014.306-1.422.204-.408.48-.726.828-.954.36-.24.774-.36 1.242-.36.48 0 .9.12 1.26.36.36.228.636.546.828.954.204.408.306.882.306 1.422 0 .552-.102 1.038-.306 1.458a2.218 2.218 0 0 1-.828.954Z"
+                                fill="#2563EB"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="m76.322 23.197 2.595 3.373h2.268l-3.662-4.787 3.338-4.663h-2.196l-2.162 3.334-2.554-3.334h-2.34l3.652 4.71-3.634 4.74h2.196l2.5-3.373ZM62.738 26.102a3.78 3.78 0 0 0 2.142.648c.456 0 .888-.072 1.296-.216.42-.144.798-.336 1.134-.576a3.418 3.418 0 0 0 .864-.835v1.447h1.872v-9.45h-1.872v1.45a3.118 3.118 0 0 0-.72-.82 3.2 3.2 0 0 0-1.062-.612 4.033 4.033 0 0 0-1.35-.216c-.828 0-1.578.21-2.25.63-.66.42-1.188 1.002-1.584 1.746-.384.732-.576 1.572-.576 2.52 0 .936.192 1.776.576 2.52.384.744.894 1.332 1.53 1.764Zm4.122-1.476c-.432.276-.93.414-1.494.414a2.682 2.682 0 0 1-1.476-.414 2.987 2.987 0 0 1-1.008-1.134c-.24-.492-.36-1.05-.36-1.674 0-.612.12-1.158.36-1.638.252-.48.588-.858 1.008-1.134a2.682 2.682 0 0 1 1.476-.414c.564 0 1.062.138 1.494.414.432.276.768.654 1.008 1.134.252.48.378 1.026.378 1.638 0 .624-.126 1.182-.378 1.674-.24.48-.576.858-1.008 1.134Z"
+                                fill="#0F172A"></path>
+                        </svg>
+                    </div>
+                    <div class="md:mt-10 mt-8 ">
+                        <ul class="flex items-center space-x-5">
+                            <li class="hover:bg-slate-100 px-2 py-1 duration-75 rounded-lg">
+                                <a href="#features">
+                                    Features
+                                </a>
+                            </li>
+                            <li class="hover:bg-slate-100 px-2 py-1 duration-75 rounded-lg">
+                                <a href="#testimonial">
+                                    Testimonial
+                                </a>
+                            </li>
+                            <li class="hover:bg-slate-100 px-2 py-1 duration-75 rounded-lg">
+                                <a href="#pricing">
+                                    Pricing
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class=" flex flex-col md:flex-row justify-center md:justify-between mt-20 md:mt-6 gap-y-6 md:gap-y-0 ">
+                    <div class="text-center md:text-start">
+                        Copyright © 2022 TaxPal. All rights reserved.
+                    </div>
+                    <div class="flex space-x-3 justify-center  md:justify-start">
+                        <a href="">
+                            <i class="fab fa-github text-2xl text-slate-500 hover:text-slate-600"></i>
+                        </a>
+                        <a href="">
+                            <i class="fab fa-facebook text-2xl text-slate-500 hover:text-slate-600"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="absolute h-[1000px]">
+            <img class="w-full "
+                src="../dist/img/TaxPal - Accounting made simple for small businesses_files/background-faqs.55d2e36a.jpg"
+                alt="">
+        </div> 
+    </section>
+    <div class="animate__animated bottom-10 right-5 footer-up-icon bg-blue-500 w-10 h-10 lg:w-14  lg:h-14 rounded-full flex items-center justify-center z-20">
+        <a href="#home">
+            <i class="fa-solid fa-angle-up text-2xl md:text-3xl text-slate-100 p-5"></i>
+        </a>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js" integrity="sha512-Kr+RPfLjQ71E0cJ9nseJ6jwTrnmMnuSPnnsVQQ/ZYYCjOHKfJcWj8ILICXnvf9A7ZQChNzIbr9x/ZAxA6xAZlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./Main.js"></script>
+<script>
+        
+        window.addEventListener('load', ()=>{
+            document.querySelector('.loading').style.transition='2s'
+            document.querySelector('.loading').style.opacity='0'
+            document.querySelector('.loading').style.zIndex='-2'
+           
+        })
+</script>
+</html>
