@@ -13,14 +13,14 @@ let forthText = document.getElementById('forthText');
 
 
 
-imgContainer.innerHTML = '<img class=" rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/payroll.webp" alt="">'
+imgContainer.innerHTML = '<img class="rounded-xl md:rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/payroll.webp" alt="">'
 
 btnOne.addEventListener('click', ()=>{
     btnOne.classList.add('bg-white/10');
     btnTwo.classList.remove('bg-white/10');
     btnThree.classList.remove('bg-white/10');
     btnFour.classList.remove('bg-white/10');
-    imgContainer.innerHTML = '<img class=" rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/payroll.webp" alt="">'
+    imgContainer.innerHTML = '<img class="rounded-xl md:rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/payroll.webp" alt="">'
 
 
 })
@@ -29,7 +29,7 @@ btnTwo.addEventListener('click', ()=>{
     btnTwo.classList.add('bg-white/10');
     btnThree.classList.remove('bg-white/10');
     btnFour.classList.remove('bg-white/10');
-    imgContainer.innerHTML = '<img class=" rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/second.webp" alt="">'
+    imgContainer.innerHTML = '<img class="rounded-xl md:rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/second.webp" alt="">'
 
 })
 btnThree.addEventListener('click', ()=>{
@@ -37,7 +37,7 @@ btnThree.addEventListener('click', ()=>{
     btnTwo.classList.remove('bg-white/10');
     btnThree.classList.add('bg-white/10');
     btnFour.classList.remove('bg-white/10');
-    imgContainer.innerHTML = '<img class=" rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/third.webp" alt="">'
+    imgContainer.innerHTML = '<img class="rounded-xl md:rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/third.webp" alt="">'
 
 })
 btnFour.addEventListener('click', ()=>{
@@ -45,7 +45,7 @@ btnFour.addEventListener('click', ()=>{
     btnTwo.classList.remove('bg-white/10');
     btnThree.classList.remove('bg-white/10');
     btnFour.classList.add('bg-white/10');
-    imgContainer.innerHTML = '<img class=" rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/forth.webp" alt="">'
+    imgContainer.innerHTML = '<img class="rounded-xl md:rounded-3xl w-full md:max-w-[700px] lg:min-w-[1024px]" src="../dist/img/forth.webp" alt="">'
 
 })
 
